@@ -1,0 +1,53 @@
+{% extends "stock_base.html" %}
+
+{% block line_chart%}
+
+
+
+
+<!-- Content Row -->
+<div class="row" xmlns="http://www.w3.org/1999/html">
+    <!-- Area Chart -->
+
+    <div class="col-xl-12 col-md-5 mb-4" id="">
+                <div class="card shadow py-2">
+                <div class="row mb-2">
+                        <div class="col col-xl-3">
+                                <span class="align-text-bottom card_button ml-3 mb-2" ><button type="button" class="btn btn-secondary" id="button">start 104爬蟲</button></span>
+                        </div>
+                        <div class="col col-xl-9" >
+                                <span  class="h5 ml-2 font-weight-bold text-gray-800 "></span>
+                                <span class="h5 font-weight-bold text-gray-800 float-right mr-2" >104爬蟲</span>
+                        </div>
+                </div>
+                <div class="row">
+                            <div class="col col-xl-3">
+                                    <span class="ml-3 font-weight-bold text-gray-800 mb-2">進度：</span> <span class="font-weight-bold text-gray-800" id="current"></span>/<span class="font-weight-bold text-gray-800" id="total"></span><br>
+                                    <span class="ml-3 font-weight-bold text-gray-800 mb-2 ">剩餘時間：</span> <span class="font-weight-bold text-gray-800" id="remain-time"></span> <br>
+
+                            </div>
+                            <div class="col col-xl-9">
+                                <canvas id="current_chart"}></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+{% endblock line_chart%}

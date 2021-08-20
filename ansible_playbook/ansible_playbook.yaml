@@ -1,0 +1,50 @@
+- hosts: gwc
+  become: True
+
+  tasks:
+    # 檢查docker是否安裝
+    - name: check docker is installed
+      shell: docker --version
+      register: check_docker
+      ignore_errors: True
+
+    # 如果沒安裝在安裝docker
+    - name: install docker
+      include_role:
+        name: docker
+      when: check_docker.rc != 0
+
+     # 檢查docker-compose是否安裝
+    - name: check docker-compose is installed
+      shell: docker-compose --version
+      register: check_docker_compose
+      ignore_errors: True
+
+     # 如果沒安裝在安裝docker-compose
+    - name: install docker-compose
+      include_role:
+        name: docker-compose
+      when: check_docker_compose.rc != 0
+
+    # 從git pull 最新code
+    - name: git pull
+      git:
+        repo: "https://github.com/kobe65218/Stock_analysis.git"
+        dest: /home/kobe655218/Stock_analysis
+        update: yes
+        version: docker
+
+    # docker-compose down
+    - name: docker-compose down
+      become: True
+      shell:
+        chdir: /home/kobe655218/Stock_analysis
+        cmd: docker-compose down
+      register: message
+
+    # 建置airflow以及flask app
+    - name: up container
+      become: True
+      shell:
+        cmd: docker-compose up -d stock_dashboard
+        chdir: /home/kobe655218/Stock_analysis

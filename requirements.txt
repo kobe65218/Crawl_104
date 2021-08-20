@@ -1,0 +1,7 @@
+flask
+numpy
+pandas
+Flask-SocketIO
+selenium
+beautifulsoup4
+python-socketio[client]

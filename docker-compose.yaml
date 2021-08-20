@@ -1,0 +1,25 @@
+version: '3'
+services:
+  flask:
+     build:
+        context: .
+        dockerfile: Dockerfile
+     restart: always
+     ports:
+        - 9091:9091
+     volumes:
+        - .:/stock/
+     command: "python3 run.py"
+
+
+  selenium:
+     image: selenium/standalone-chrome
+     ports:
+        - "4444:4444"
+#  chrome:
+#     image: selenium/node-chrome
+#     depends_on:
+#        - selenium-hub
+#     environment:
+#        - HUB_HOST=selenium-hub
+#        - HUB_PORT=4444
